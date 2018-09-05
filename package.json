@@ -1,14 +1,14 @@
 {
 	"name": "asyncify",
-	"version": "4.0.0",
+	"version": "4.0.1",
 	"description": "Convert a callback-style function to an AsyncFunction",
 	"license": "MIT",
 	"repository": "https://bitbucket.orgisysd/tech-js-node_modules-asyncify",
-   "author": {
-     "name": "Sindre Sorhus",
-     "email": "sindresorhus@gmail.com",
-     "url": "sindresorhus.com"
-   },
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
 	"engines": {
 		"node": ">=6"
 	},
