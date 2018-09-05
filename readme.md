@@ -1,4 +1,4 @@
-# asyncify
+# asyncpify
 
 > Convert a callback-style function to an AsyncFunction
 
@@ -6,7 +6,7 @@
 ## Install
 
 ```
-$ npm install asyncify
+$ npm install asyncpify
 ```
 
 
@@ -14,25 +14,25 @@ $ npm install asyncify
 
 ```js
 const fs = require('fs');
-const asyncify = require('asyncify');
+const asyncpify = require('asyncpify');
 
 // Promisify a single function
-asyncify(fs.readFile)('package.json', 'utf8').then(data => {
+asyncpify(fs.readFile)('package.json', 'utf8').then(data => {
 	console.log(JSON.parse(data).name);
-	//=> 'asyncify'
+	//=> 'asyncpify'
 });
 
 // Promisify all methods in a module
-asyncify(fs).readFile('package.json', 'utf8').then(data => {
+asyncpify(fs).readFile('package.json', 'utf8').then(data => {
 	console.log(JSON.parse(data).name);
-	//=> 'asyncify'
+	//=> 'asyncpify'
 });
 ```
 
 
 ## API
 
-### asyncify(input, [options])
+### asyncpify(input, [options])
 
 Returns a `Promise` wrapped version of the supplied function or module.
 
@@ -53,9 +53,9 @@ By default, the promisified function will only return the second argument from t
 
 ```js
 const request = require('request');
-const asyncify = require('asyncify');
+const asyncpify = require('asyncpify');
 
-asyncify(request, {multiArgs: true})('https://sindresorhus.com').then(result => {
+asyncpify(request, {multiArgs: true})('https://sindresorhus.com').then(result => {
 	const [httpResponse, body] = result;
 });
 ```
@@ -81,7 +81,7 @@ Default: `false`
 If given module is a function itself, it will be promisified. Turn this option on if you want to promisify only methods of the module.
 
 ```js
-const asyncify = require('asyncify');
+const asyncpify = require('asyncpify');
 
 function fn() {
 	return true;
@@ -94,7 +94,7 @@ fn.method = (data, callback) => {
 };
 
 // Promisify methods but not `fn()`
-const promiseFn = asyncify(fn, {excludeMain: true});
+const promiseFn = asyncpify(fn, {excludeMain: true});
 
 if (promiseFn()) {
 	promiseFn.method('hi').then(data => {
