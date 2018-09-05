@@ -1,14 +1,14 @@
 {
-	"name": "pify",
+	"name": "asyncify",
 	"version": "4.0.0",
-	"description": "Promisify a callback-style function",
+	"description": "Convert a callback-style function to an AsyncFunction",
 	"license": "MIT",
-	"repository": "sindresorhus/pify",
-	"author": {
-		"name": "Sindre Sorhus",
-		"email": "sindresorhus@gmail.com",
-		"url": "sindresorhus.com"
-	},
+	"repository": "https://bitbucket.orgisysd/tech-js-node_modules-asyncify",
+   "author": {
+     "name": "Sindre Sorhus",
+     "email": "sindresorhus@gmail.com",
+     "url": "sindresorhus.com"
+   },
 	"engines": {
 		"node": ">=6"
 	},

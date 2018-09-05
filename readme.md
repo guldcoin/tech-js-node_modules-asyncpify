@@ -1,12 +1,12 @@
-# pify [![Build Status](https://travis-ci.org/sindresorhus/pify.svg?branch=master)](https://travis-ci.org/sindresorhus/pify)
+# asyncify
 
-> Promisify a callback-style function
+> Convert a callback-style function to an AsyncFunction
 
 
 ## Install
 
 ```
-$ npm install pify
+$ npm install asyncify
 ```
 
 
@@ -14,25 +14,25 @@ $ npm install pify
 
 ```js
 const fs = require('fs');
-const pify = require('pify');
+const asyncify = require('asyncify');
 
 // Promisify a single function
-pify(fs.readFile)('package.json', 'utf8').then(data => {
+asyncify(fs.readFile)('package.json', 'utf8').then(data => {
 	console.log(JSON.parse(data).name);
-	//=> 'pify'
+	//=> 'asyncify'
 });
 
 // Promisify all methods in a module
-pify(fs).readFile('package.json', 'utf8').then(data => {
+asyncify(fs).readFile('package.json', 'utf8').then(data => {
 	console.log(JSON.parse(data).name);
-	//=> 'pify'
+	//=> 'asyncify'
 });
 ```
 
 
 ## API
 
-### pify(input, [options])
+### asyncify(input, [options])
 
 Returns a `Promise` wrapped version of the supplied function or module.
 
@@ -53,9 +53,9 @@ By default, the promisified function will only return the second argument from t
 
 ```js
 const request = require('request');
-const pify = require('pify');
+const asyncify = require('asyncify');
 
-pify(request, {multiArgs: true})('https://sindresorhus.com').then(result => {
+asyncify(request, {multiArgs: true})('https://sindresorhus.com').then(result => {
 	const [httpResponse, body] = result;
 });
 ```
@@ -81,7 +81,7 @@ Default: `false`
 If given module is a function itself, it will be promisified. Turn this option on if you want to promisify only methods of the module.
 
 ```js
-const pify = require('pify');
+const asyncify = require('asyncify');
 
 function fn() {
 	return true;
@@ -94,7 +94,7 @@ fn.method = (data, callback) => {
 };
 
 // Promisify methods but not `fn()`
-const promiseFn = pify(fn, {excludeMain: true});
+const promiseFn = asyncify(fn, {excludeMain: true});
 
 if (promiseFn()) {
 	promiseFn.method('hi').then(data => {
@@ -121,10 +121,7 @@ Check out [`pinkie-promise`](https://github.com/floatdrop/pinkie-promise) if you
 
 ## Related
 
-- [p-event](https://github.com/sindresorhus/p-event) - Promisify an event by waiting for it to be emitted
-- [p-map](https://github.com/sindresorhus/p-map) - Map over promises concurrently
-- [More…](https://github.com/sindresorhus/promise-fun)
-
+- [pify](https://github.com/sindresorhus/pify) - Promisify a callback function. This project is a `pify` fork.
 
 ## License
 
