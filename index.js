@@ -1,6 +1,6 @@
 'use strict';
 
-const processFn = (fn, options) => async function (...args) {
+const processFn = (fn, options) => async function (...args) { // eslint-disable-line require-await
 	const P = options.promiseModule;
 
 	return new P((resolve, reject) => {
@@ -52,7 +52,7 @@ module.exports = (input, options) => {
 
 	let ret;
 	if (objType === 'function') {
-		ret = async (...args) => (input.constructor !== undefined && input.constructor.name === 'AsyncFunction') || options.excludeMain ? input(...args) : processFn(input, options)(...args);
+		ret = async (...args) => (input.constructor !== undefined && input.constructor.name === 'AsyncFunction') || options.excludeMain ? input(...args) : processFn(input, options)(...args); // eslint-disable-line require-await
 	} else {
 		ret = Object.create(Object.getPrototypeOf(input));
 	}
